@@ -1,5 +1,12 @@
 #pragma once
 
-bool IsErrorCriticalExit();
-void CriticalErrorExit();
-void CriticalErrorExit(stl::string_view str);
+#if SE_ENABLE_EXCEPTION
+struct Exception : public std::exception
+{
+	Exception(std::string_view str) : std::exception(str.data()){}
+};
+#else
+bool IsFatalError();
+#endif
+
+void FatalError(stl::string_view str);

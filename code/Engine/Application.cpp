@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "Application.h"
-
-
 //-----------------------------------------------------------------------------
 struct AppPimpl
 {
@@ -15,6 +13,7 @@ Application::Application()
 //-----------------------------------------------------------------------------
 Application::~Application()
 {
+	close();
 	SafeDelete(m_impl);
 }
 //-----------------------------------------------------------------------------
@@ -37,7 +36,7 @@ bool Application::initSubsystem()
 	bool isError = false;
 	auto &config = m_impl->config;
 
-#define SE_INIT_SUBSYSTEM(_ss) ((isError) = ((isError) || (IsErrorCriticalExit()) || !(_ss)))
+#define SE_INIT_SUBSYSTEM(_ss) ((isError) = ((isError) || (IsErrorCritical()) || !(_ss)))
 
 	//SE_INIT_SUBSYSTEM(Platform::Create());
 
@@ -52,22 +51,16 @@ void Application::deltaTime()
 //-----------------------------------------------------------------------------
 bool Application::beginFrame()
 {
-	if( IsErrorCriticalExit() ) return false;
-
 	return true;
 }
 //-----------------------------------------------------------------------------
 bool Application::endFrame()
 {
-	if( IsErrorCriticalExit() ) return false;
-
 	return true;
 }
 //-----------------------------------------------------------------------------
 bool Application::update()
 {
-	if( IsErrorCriticalExit() ) return false;
-
 	return true;
 }
 //-----------------------------------------------------------------------------

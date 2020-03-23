@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+//=============================================================================
+// Base header
 #include "Engine/Version.h"
 #include "Engine/EngineConfig.h"
 #include "Engine/DetectCompiler.h"
@@ -8,7 +10,14 @@
 #include "Engine/BaseMacros.h"
 #include "Engine/InlineFunc.h"
 
+//=============================================================================
+// STL
 #pragma warning( push, 1 )
+
+#if SE_ENABLE_EXCEPTION
+#	include <exception>
+#endif
+
 #include <ctime>
 #if SE_ENABLE_EASTL
 #else
@@ -27,6 +36,8 @@ namespace stl
 #endif
 }
 
+//=============================================================================
+// Platform header
 #if SE_PLATFORM_WINDOWS
 #	include "Engine/Win32PlatformDefinitions.h"
 #	pragma warning( push, 1 )
@@ -34,3 +45,9 @@ namespace stl
 #	pragma warning( pop )
 #endif
 #include "Engine/PlatformMacros.h"
+
+//=============================================================================
+// 3rdparty header
+
+//=============================================================================
+// Other header

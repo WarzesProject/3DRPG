@@ -1,21 +1,24 @@
 #include "stdafx.h"
 #include "Error.h"
 //-----------------------------------------------------------------------------
-extern bool Error_IsErrorCriticalExit = false;
+#if !SE_ENABLE_EXCEPTION
+bool bFatalError = false;
+#endif
 //-----------------------------------------------------------------------------
-bool IsErrorCriticalExit()
+#if !SE_ENABLE_EXCEPTION
+bool IsFatalError()
 {
-	return Error_IsErrorCriticalExit;
+	return bFatalError;
 }
+#endif
 //-----------------------------------------------------------------------------
-void CriticalErrorExit()
+void FatalError(std::string_view str)
 {
-	Error_IsErrorCriticalExit = true;
-}
-//-----------------------------------------------------------------------------
-void CriticalErrorExit(std::string_view str)
-{
+#if SE_ENABLE_EXCEPTION
+	throw Exception(str);
+#else
 	//Logs::Error(str);
-	CriticalErrorExit();
+	bFatalError = true;
+#endif
 }
 //-----------------------------------------------------------------------------
