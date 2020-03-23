@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Application.cpp">
+      <Filter>X_Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Error.cpp">
+      <Filter>1_Core\Debug</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Application.h">
+      <Filter>X_Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration.h">
+      <Filter>X_Application</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseMacros.h">
+      <Filter>1_Core\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="DetectCompiler.h">
+      <Filter>1_Core\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="DetectOS.h">
+      <Filter>1_Core\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineConfig.h">
+      <Filter>1_Core\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="InlineFunc.h">
+      <Filter>1_Core\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="PlatformMacros.h">
+      <Filter>1_Core\Base\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="PostConfigEngine.h">
+      <Filter>1_Core\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Version.h">
+      <Filter>1_Core\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Win32PlatformDefinitions.h">
+      <Filter>1_Core\Base\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Error.h">
+      <Filter>1_Core\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Subsystem.h">
+      <Filter>1_Core\Template</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="1_Core">
+      <UniqueIdentifier>{b40a47b6-9c69-4252-95e5-23b5f2e7171b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\Base">
+      <UniqueIdentifier>{7687969e-d1d7-44fd-9124-5af6819665a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\Base\Platform">
+      <UniqueIdentifier>{9f21a7ea-7d1b-42e9-aa2c-07c4126d83f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\Template">
+      <UniqueIdentifier>{0a0ebf87-702b-4c0e-9e57-95bd9e6651bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="X_Application">
+      <UniqueIdentifier>{cdd35ebe-4435-414e-8f09-7bcd21ae309e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\Debug">
+      <UniqueIdentifier>{08b40f3b-ac89-4c7c-bd22-60546bcd5e50}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
