@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Application.h"
 #include "Window.h"
+#include <gl/GL.h>
 //-----------------------------------------------------------------------------
 struct Application::AppPimpl
 {
@@ -43,7 +44,7 @@ bool Application::initSubsystem()
 #if SE_ENABLE_EXCEPTION
 #	define SE_INIT_SUBSYSTEM(_ss) ((isError) = (isError) || !(_ss))
 #else
-#	define SE_INIT_SUBSYSTEM(_ss) ((isError) = ((isError) || (IsErrorCritical()) || !(_ss)))
+#	define SE_INIT_SUBSYSTEM(_ss) ((isError) = ((isError) || (IsFatalError()) || !(_ss)))
 #endif
 
 	SE_INIT_SUBSYSTEM(Window::Create(m_config.window));
@@ -62,6 +63,10 @@ void Application::deltaTime()
 //-----------------------------------------------------------------------------
 bool Application::beginFrame()
 {
+	glViewport(0, 0, 800, 600);
+	glClearColor(0.2f, 0.4f, 0.9f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
 	return true;
 }
 //-----------------------------------------------------------------------------

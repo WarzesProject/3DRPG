@@ -7,11 +7,25 @@ constexpr LPCWSTR WINDOW_CLASS_NAME = L"SapphireWindow";
 //-----------------------------------------------------------------------------
 #if SE_OPENGL
 #	pragma comment(lib, "OpenGL32.lib")
-struct GLWindowsWin32
+#endif
+//-----------------------------------------------------------------------------
+struct Window::WindowPlatform
 {
-	void Init(HWND &hwnd)
+	~WindowPlatform()
 	{
-		const PIXELFORMATDESCRIPTOR pfd = 
+#if SE_OPENGL
+		wglMakeCurrent(NULL, NULL);
+		wglDeleteContext(hrc);
+		ReleaseDC(hwnd, hdc);
+#endif
+		DestroyWindow(hwnd);
+		UnregisterClass(WINDOW_CLASS_NAME, Instance);
+	}
+
+	void InitGLContext()
+	{
+#if SE_OPENGL
+		const PIXELFORMATDESCRIPTOR pfd =
 		{
 			sizeof(PIXELFORMATDESCRIPTOR),1,
 			PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER,
@@ -27,25 +41,15 @@ struct GLWindowsWin32
 		SetPixelFormat(hdc, pixelFormat, &pfd);
 		hrc = wglCreateContext(hdc);
 		wglMakeCurrent(hdc, hrc);
-	}
-
-	void Close(HWND &hwnd)
-	{
-		wglMakeCurrent(NULL, NULL);
-		wglDeleteContext(hrc);
-		ReleaseDC(hwnd, hdc);
-	}
-
-	HDC hdc;
-	HGLRC hrc;
-};
 #endif
-//-----------------------------------------------------------------------------
-struct Window::WindowPlatform
-{
+	}
+
 	HINSTANCE Instance;
 	HWND hwnd;
-	GLWindowsWin32 glWnd;
+#if SE_OPENGL
+	HDC hdc;
+	HGLRC hrc;
+#endif
 };
 //-----------------------------------------------------------------------------
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -103,9 +107,8 @@ bool Window::init()
 
 	AdjustWindowRectEx(&winRect, style, false, styleEX);
 	m_pimpl->hwnd = CreateWindowEx(styleEX, WINDOW_CLASS_NAME, TEXT("Game"), WS_CLIPSIBLINGS | WS_CLIPCHILDREN | style, screenLeft, screenTop, (winRect.right - winRect.left), (winRect.bottom - winRect.top), NULL, NULL, m_pimpl->Instance, NULL);
-#if SE_OPENGL
-	m_pimpl->glWnd.Init(m_pimpl->hwnd);
-#endif
+
+	m_pimpl->InitGLContext();
 	ShowWindow(m_pimpl->hwnd, SW_SHOW);
 	SetForegroundWindow(m_pimpl->hwnd);
 	SetFocus(m_pimpl->hwnd);
@@ -116,12 +119,7 @@ bool Window::init()
 //-----------------------------------------------------------------------------
 void Window::close()
 {
-	ShowCursor(true);
-#if SE_OPENGL
-	m_pimpl->glWnd.Close(m_pimpl->hwnd);
-#endif
-	DestroyWindow(m_pimpl->hwnd);
-	UnregisterClass(WINDOW_CLASS_NAME, m_pimpl->Instance);
+	ShowCursor(true);	
 	SafeDelete(m_pimpl);
 }
 //-----------------------------------------------------------------------------
@@ -145,7 +143,7 @@ void Window::Update()
 void Window::Swap()
 {
 #if SE_OPENGL
-	SwapBuffers(m_pimpl->glWnd.hdc);
+	SwapBuffers(m_pimpl->hdc);
 #endif
 }
 //-----------------------------------------------------------------------------

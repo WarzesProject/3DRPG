@@ -21,33 +21,31 @@ public:
 
 				bool isExit = false;
 #if !SE_ENABLE_EXCEPTION
-				isExit = IsErrorCritical();
+				isExit = IsFatalError();
 #endif
 				if ( !isExit && userApp.Init() )
 				{
-#pragma warning(disable: 4626)
-#if SE_ENABLE_EXCEPTION
-					auto funcInMainLoop = [&isExit](bool retFunc) -> void { isExit = isExit || !retFunc; };
-#else
-					auto funcInMainLoop = [&isExit](bool retFunc) -> void { isExit = (isExit || !(!IsErrorCritical() && retFunc)); };
-#endif
-#pragma warning(default: 4626)
-
 					while ( !isExit )
 					{
 						engineApp.deltaTime();
 
+#if SE_ENABLE_EXCEPTION
+#	define FUNCINMAIN(func) { isExit = (isExit || !func); }
+#else
+#	define FUNCINMAIN(func) { isExit = (isExit || !(!IsFatalError() && func)); }
+#endif
 						// Event Update
-						funcInMainLoop(engineApp.update());
-						funcInMainLoop(userApp.Update());
-
-						// Render Draw
-						funcInMainLoop(engineApp.beginFrame());
-						funcInMainLoop(userApp.Frame());
-						funcInMainLoop(engineApp.endFrame());
+						FUNCINMAIN(engineApp.update());
+						FUNCINMAIN(userApp.Update());
 
 						// exit command
 						isExit = isExit || Application::m_isExitCommand;
+
+						// Render Draw
+						FUNCINMAIN(engineApp.beginFrame());
+						FUNCINMAIN(userApp.Frame());
+						FUNCINMAIN(engineApp.endFrame());
+#undef FUNCINMAIN
 					}
 				}
 			}			
