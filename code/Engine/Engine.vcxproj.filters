@@ -17,6 +17,9 @@
     <ClCompile Include="WindowWin32.cpp">
       <Filter>2_Platform\Window</Filter>
     </ClCompile>
+    <ClCompile Include="RenderSystem.cpp">
+      <Filter>5_Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -71,6 +74,12 @@
     <ClInclude Include="WindowConfiguration.h">
       <Filter>2_Platform\Window</Filter>
     </ClInclude>
+    <ClInclude Include="RenderSystem.h">
+      <Filter>5_Render</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderConfiguration.h">
+      <Filter>5_Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="1_Core">
@@ -102,6 +111,15 @@
     </Filter>
     <Filter Include="2_Platform\Window">
       <UniqueIdentifier>{a2ff2ef0-daa4-47dd-8f24-fcbbf13c84eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_Utility">
+      <UniqueIdentifier>{743fac8d-1bef-4a51-b20c-15224594db46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Render">
+      <UniqueIdentifier>{d2291251-80ac-4d79-bece-72768f7ef5db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Render\OpenGL">
+      <UniqueIdentifier>{2020c595-0d37-415f-af9f-9b5b567615f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

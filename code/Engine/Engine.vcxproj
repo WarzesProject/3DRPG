@@ -176,6 +176,8 @@
     <ClInclude Include="Log.h" />
     <ClInclude Include="PlatformMacros.h" />
     <ClInclude Include="PostConfigEngine.h" />
+    <ClInclude Include="RenderConfiguration.h" />
+    <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Subsystem.h" />
     <ClInclude Include="Thread.h" />
@@ -188,6 +190,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Error.cpp" />
     <ClCompile Include="Log.cpp" />
+    <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

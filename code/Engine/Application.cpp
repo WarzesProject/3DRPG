@@ -1,16 +1,19 @@
 #include "stdafx.h"
 #include "Application.h"
 #include "Window.h"
+#include "RenderSystem.h"
 #include <gl/GL.h>
 //-----------------------------------------------------------------------------
 struct Application::AppPimpl
 {
-	AppPimpl(Window &wnd)
+	AppPimpl(Window &wnd, RenderSystem &rs)
 		: window(wnd)
+		, render(rs)
 	{
 	}
 
 	Window &window;
+	RenderSystem &render;
 };
 //-----------------------------------------------------------------------------
 Application::Application()
@@ -34,6 +37,10 @@ bool Application::init(const Configuration &config)
 	if( !initSubsystem() )
 		return false;
 
+	m_pimpl = new Application::AppPimpl(
+		GetSubsystem<Window>(),
+		GetSubsystem<RenderSystem>());
+
 	return true;
 }
 //-----------------------------------------------------------------------------
@@ -48,11 +55,9 @@ bool Application::initSubsystem()
 #endif
 
 	SE_INIT_SUBSYSTEM(Window::Create(m_config.window));
+	SE_INIT_SUBSYSTEM(RenderSystem::Create(m_config.render));
 
 #undef SE_INIT_SUBSYSTEM
-
-
-	m_pimpl = new Application::AppPimpl(GetSubsystem<Window>());
 
 	return !isError;
 }
@@ -63,6 +68,7 @@ void Application::deltaTime()
 //-----------------------------------------------------------------------------
 bool Application::beginFrame()
 {
+	m_pimpl->render.BeginFrame();
 	glViewport(0, 0, 800, 600);
 	glClearColor(0.2f, 0.4f, 0.9f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -72,6 +78,7 @@ bool Application::beginFrame()
 //-----------------------------------------------------------------------------
 bool Application::endFrame()
 {
+	m_pimpl->render.EndFrame();
 	m_pimpl->window.Swap();
 	return true;
 }
@@ -85,6 +92,7 @@ bool Application::update()
 //-----------------------------------------------------------------------------
 void Application::close()
 {
+	RenderSystem::Destroy();
 	Window::Destroy();
 }
 //-----------------------------------------------------------------------------
