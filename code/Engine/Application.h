@@ -2,6 +2,7 @@
 
 #include "Engine/Configuration.h"
 #include "Engine/Error.h"
+#include "Engine/Log.h"
 
 class Application
 {
@@ -51,6 +52,7 @@ public:
 #if SE_ENABLE_EXCEPTION
 		catch ( const Exception &exc )
 		{
+			SE_LOG_ERROR(exc.what());
 		}
 #endif
 		return 0;

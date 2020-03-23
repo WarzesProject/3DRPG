@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Error.h"
+#include "Log.h"
 //-----------------------------------------------------------------------------
 #if !SE_ENABLE_EXCEPTION
 bool bFatalError = false;
@@ -17,7 +18,7 @@ void FatalError(std::string_view str)
 #if SE_ENABLE_EXCEPTION
 	throw Exception(str);
 #else
-	//Logs::Error(str);
+	SE_LOG_ERROR(str);
 	bFatalError = true;
 #endif
 }

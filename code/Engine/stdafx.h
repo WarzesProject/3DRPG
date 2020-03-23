@@ -24,6 +24,11 @@
 #	include <algorithm>
 #	include <string>
 #	include <string_view>
+#	include <queue>
+#	include <atomic>
+#	include <thread>
+#	include <condition_variable>
+
 #endif
 #pragma warning( pop )
 
@@ -42,6 +47,7 @@ namespace stl
 #	include "Engine/Win32PlatformDefinitions.h"
 #	pragma warning( push, 1 )
 #	include <Windows.h>
+#	include <strsafe.h>
 #	pragma warning( pop )
 #endif
 #include "Engine/PlatformMacros.h"

@@ -8,6 +8,9 @@
     <ClCompile Include="Error.cpp">
       <Filter>1_Core\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>1_Core\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -50,6 +53,12 @@
     <ClInclude Include="Subsystem.h">
       <Filter>1_Core\Template</Filter>
     </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>1_Core\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread.h">
+      <Filter>1_Core\Thread</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="1_Core">
@@ -69,6 +78,15 @@
     </Filter>
     <Filter Include="1_Core\Debug">
       <UniqueIdentifier>{08b40f3b-ac89-4c7c-bd22-60546bcd5e50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Platform">
+      <UniqueIdentifier>{5c47fad8-1cd4-4d3a-a1c6-1950e7ca2554}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_Math">
+      <UniqueIdentifier>{45d0b148-23b9-443b-b41b-0e615c8c58e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\Thread">
+      <UniqueIdentifier>{16904030-24a3-4939-a7d3-e8ea7cd5c877}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

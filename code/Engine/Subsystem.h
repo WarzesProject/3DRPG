@@ -11,7 +11,7 @@ public:
 	{
 		if( IsValid() )
 		{
-			CriticalError("Trying to create an already created module.");
+			FatalError("Trying to create an already created module.");
 			return false;
 		}
 
@@ -24,7 +24,7 @@ public:
 	{
 		if( IsValid() )
 		{
-			CriticalError("Trying to create an already created module.");
+			FatalError("Trying to create an already created module.");
 			return false;
 		}
 
@@ -41,7 +41,7 @@ public:
 	static T& Get()
 	{
 		if( !IsValid() )
-			CriticalError("Trying to access a module but it hasn't been created up yet.");
+			FatalError("Trying to access a module but it hasn't been created up yet.");
 
 		return *instance();
 	}

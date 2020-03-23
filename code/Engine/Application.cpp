@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Application.h"
+#include "Log.h"
 //-----------------------------------------------------------------------------
 struct AppPimpl
 {
@@ -36,9 +37,13 @@ bool Application::initSubsystem()
 	bool isError = false;
 	auto &config = m_impl->config;
 
-#define SE_INIT_SUBSYSTEM(_ss) ((isError) = ((isError) || (IsErrorCritical()) || !(_ss)))
+#if SE_ENABLE_EXCEPTION
+#	define SE_INIT_SUBSYSTEM(_ss) ((isError) = (isError) || !(_ss))
+#else
+#	define SE_INIT_SUBSYSTEM(_ss) ((isError) = ((isError) || (IsErrorCritical()) || !(_ss)))
+#endif
 
-	//SE_INIT_SUBSYSTEM(Platform::Create());
+	//SE_INIT_SUBSYSTEM(Logger::Create());
 
 #undef SE_INIT_SUBSYSTEM
 
