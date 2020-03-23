@@ -9,3 +9,4 @@
 -------------------------------------------------------------------------------
 - https://www.youtube.com/user/barzahd512/videos - пишет движок на вулкане на стримах
 - https://www.youtube.com/user/zeuxcg/videos - о вулкане от zeux
+- https://www.twitch.tv/videos/572878583 - видео halley

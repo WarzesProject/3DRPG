@@ -1,26 +1,30 @@
 #include "stdafx.h"
 #include "Application.h"
-#include "Log.h"
+#include "Window.h"
 //-----------------------------------------------------------------------------
-struct AppPimpl
+struct Application::AppPimpl
 {
-	Configuration config;
+	AppPimpl(Window &wnd)
+		: window(wnd)
+	{
+	}
+
+	Window &window;
 };
 //-----------------------------------------------------------------------------
 Application::Application()
-	: m_impl(new AppPimpl)
 {
 }
 //-----------------------------------------------------------------------------
 Application::~Application()
 {
 	close();
-	SafeDelete(m_impl);
+	SafeDelete(m_pimpl);
 }
 //-----------------------------------------------------------------------------
 bool Application::init(const Configuration &config)
 {
-	m_impl->config = config;
+	m_config = config;
 
 #if SE_DEBUG && SE_PLATFORM_WINDOWS
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -35,7 +39,6 @@ bool Application::init(const Configuration &config)
 bool Application::initSubsystem()
 {
 	bool isError = false;
-	auto &config = m_impl->config;
 
 #if SE_ENABLE_EXCEPTION
 #	define SE_INIT_SUBSYSTEM(_ss) ((isError) = (isError) || !(_ss))
@@ -43,9 +46,12 @@ bool Application::initSubsystem()
 #	define SE_INIT_SUBSYSTEM(_ss) ((isError) = ((isError) || (IsErrorCritical()) || !(_ss)))
 #endif
 
-	//SE_INIT_SUBSYSTEM(Logger::Create());
+	SE_INIT_SUBSYSTEM(Window::Create(m_config.window));
 
 #undef SE_INIT_SUBSYSTEM
+
+
+	m_pimpl = new Application::AppPimpl(GetSubsystem<Window>());
 
 	return !isError;
 }
@@ -61,15 +67,19 @@ bool Application::beginFrame()
 //-----------------------------------------------------------------------------
 bool Application::endFrame()
 {
+	m_pimpl->window.Swap();
 	return true;
 }
 //-----------------------------------------------------------------------------
 bool Application::update()
 {
+	m_pimpl->window.Update();
+
 	return true;
 }
 //-----------------------------------------------------------------------------
 void Application::close()
 {
+	Window::Destroy();
 }
 //-----------------------------------------------------------------------------

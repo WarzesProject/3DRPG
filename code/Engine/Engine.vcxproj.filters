@@ -11,6 +11,12 @@
     <ClCompile Include="Log.cpp">
       <Filter>1_Core\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>2_Platform\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowWin32.cpp">
+      <Filter>2_Platform\Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -59,6 +65,12 @@
     <ClInclude Include="Thread.h">
       <Filter>1_Core\Thread</Filter>
     </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>2_Platform\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowConfiguration.h">
+      <Filter>2_Platform\Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="1_Core">
@@ -87,6 +99,9 @@
     </Filter>
     <Filter Include="1_Core\Thread">
       <UniqueIdentifier>{16904030-24a3-4939-a7d3-e8ea7cd5c877}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Platform\Window">
+      <UniqueIdentifier>{a2ff2ef0-daa4-47dd-8f24-fcbbf13c84eb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -45,6 +45,9 @@ public:
 						funcInMainLoop(engineApp.beginFrame());
 						funcInMainLoop(userApp.Frame());
 						funcInMainLoop(engineApp.endFrame());
+
+						// exit command
+						isExit = isExit || Application::m_isExitCommand;
 					}
 				}
 			}			
@@ -56,6 +59,11 @@ public:
 		}
 #endif
 		return 0;
+	}
+
+	static void Exit()
+	{
+		m_isExitCommand = true;
 	}
 
 private:
@@ -74,5 +82,10 @@ private:
 	bool update();
 	void close();
 
-	struct AppPimpl *m_impl = nullptr;
+	static inline bool m_isExitCommand = false;
+
+	Configuration m_config;
+	struct AppPimpl;
+	AppPimpl *m_pimpl = nullptr;
+	
 };
