@@ -5,7 +5,7 @@ enum class RenderAPI
 	OpenGL
 };
 
-class RenderConfiguration
+struct RenderConfiguration
 {
 	RenderAPI api = RenderAPI::OpenGL;
 };

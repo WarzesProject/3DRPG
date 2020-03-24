@@ -1,13 +1,9 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Window.h"
 #if SE_PLATFORM_WINDOWS
 #include "Application.h"
 //-----------------------------------------------------------------------------
 constexpr LPCWSTR WINDOW_CLASS_NAME = L"SapphireWindow";
-//-----------------------------------------------------------------------------
-#if SE_OPENGL
-#	pragma comment(lib, "OpenGL32.lib")
-#endif
 //-----------------------------------------------------------------------------
 struct Window::WindowPlatform
 {
@@ -22,9 +18,10 @@ struct Window::WindowPlatform
 		UnregisterClass(WINDOW_CLASS_NAME, Instance);
 	}
 
+	TODO("перенести в OGLRenderer");
+#if SE_OPENGL
 	void InitGLContext()
 	{
-#if SE_OPENGL
 		const PIXELFORMATDESCRIPTOR pfd =
 		{
 			sizeof(PIXELFORMATDESCRIPTOR),1,
@@ -41,8 +38,8 @@ struct Window::WindowPlatform
 		SetPixelFormat(hdc, pixelFormat, &pfd);
 		hrc = wglCreateContext(hdc);
 		wglMakeCurrent(hdc, hrc);
-#endif
 	}
+#endif
 
 	HINSTANCE Instance;
 	HWND hwnd;

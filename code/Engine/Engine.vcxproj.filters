@@ -118,8 +118,5 @@
     <Filter Include="5_Render">
       <UniqueIdentifier>{d2291251-80ac-4d79-bece-72768f7ef5db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="5_Render\OpenGL">
-      <UniqueIdentifier>{2020c595-0d37-415f-af9f-9b5b567615f4}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>

@@ -7,6 +7,7 @@ class RenderSystem : public Subsystem<RenderSystem>
 {
 public:
 	RenderSystem(RenderConfiguration &config);
+	~RenderSystem();
 
 	void BeginFrame();
 	void EndFrame();

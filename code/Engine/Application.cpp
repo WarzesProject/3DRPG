@@ -2,7 +2,6 @@
 #include "Application.h"
 #include "Window.h"
 #include "RenderSystem.h"
-#include <gl/GL.h>
 //-----------------------------------------------------------------------------
 struct Application::AppPimpl
 {
@@ -69,10 +68,6 @@ void Application::deltaTime()
 bool Application::beginFrame()
 {
 	m_pimpl->render.BeginFrame();
-	glViewport(0, 0, 800, 600);
-	glClearColor(0.2f, 0.4f, 0.9f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-
 	return true;
 }
 //-----------------------------------------------------------------------------
