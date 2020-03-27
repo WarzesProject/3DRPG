@@ -172,6 +172,7 @@
     <ClInclude Include="DetectOS.h" />
     <ClInclude Include="EngineConfig.h" />
     <ClInclude Include="Error.h" />
+    <ClInclude Include="FileSystem.h" />
     <ClInclude Include="InlineFunc.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="PlatformMacros.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Subsystem.h" />
     <ClInclude Include="Thread.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Version.h" />
     <ClInclude Include="Win32PlatformDefinitions.h" />
     <ClInclude Include="Window.h" />
@@ -189,6 +191,7 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Error.cpp" />
+    <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -197,6 +200,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WindowWin32.cpp" />
   </ItemGroup>

@@ -20,3 +20,5 @@ template<typename T, size_t N>
 {
 	return N;
 }
+
+#define elementsOf(a) (sizeof(a) / sizeof((a)[0]))

@@ -5,6 +5,7 @@
 #pragma comment(lib, "3rdparty.lib")
 #pragma comment(lib, "Engine.lib")
 #pragma comment(lib, "ImportCode.lib")
+#pragma comment(lib, "Winmm.lib")
 //-----------------------------------------------------------------------------
 int WINAPI wWinMain(
 	[[maybe_unused]] _In_ HINSTANCE hInstance,

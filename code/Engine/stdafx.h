@@ -48,15 +48,14 @@ namespace stl
 #	pragma warning( push, 1 )
 #	include <Windows.h>
 #	include <strsafe.h>
+#	include <timeapi.h>
 #	pragma warning( pop )
 #endif
 #include "Engine/PlatformMacros.h"
 
 //=============================================================================
 // 3rdparty header
-#if SE_OPENGL
-#	include <gl/GL.h>
-#endif
+
 
 //=============================================================================
 // Other header

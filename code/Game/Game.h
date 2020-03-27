@@ -8,6 +8,6 @@ public:
 	~Game();
 
 	bool Init();
-	bool Update();
+	bool Update(float dt);
 	bool Frame();
 };

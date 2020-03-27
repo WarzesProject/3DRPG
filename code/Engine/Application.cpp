@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "Window.h"
 #include "RenderSystem.h"
+#include "Timer.h"
 //-----------------------------------------------------------------------------
 struct Application::AppPimpl
 {
@@ -63,6 +64,10 @@ bool Application::initSubsystem()
 //-----------------------------------------------------------------------------
 void Application::deltaTime()
 {
+	m_deltaTime = m_deltaTimer.GetMSec(true) / 1000.0f;
+	// if framerate appears to drop below about 6, assume we're at a breakpoint and simulate 20fps.
+	if ( m_deltaTime > 0.15f )
+		m_deltaTime = 0.05f;
 }
 //-----------------------------------------------------------------------------
 bool Application::beginFrame()
@@ -78,7 +83,7 @@ bool Application::endFrame()
 	return true;
 }
 //-----------------------------------------------------------------------------
-bool Application::update()
+bool Application::update(float dt)
 {
 	m_pimpl->window.Update();
 

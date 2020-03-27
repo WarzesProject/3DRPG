@@ -3,6 +3,7 @@
 #include "Engine/Configuration.h"
 #include "Engine/Error.h"
 #include "Engine/Log.h"
+#include "Engine/Timer.h"
 
 class Application
 {
@@ -35,8 +36,8 @@ public:
 #	define FUNCINMAIN(func) { isExit = (isExit || !(!IsFatalError() && func)); }
 #endif
 						// Event Update
-						FUNCINMAIN(engineApp.update());
-						FUNCINMAIN(userApp.Update());
+						FUNCINMAIN(engineApp.update(engineApp.m_deltaTime));
+						FUNCINMAIN(userApp.Update(engineApp.m_deltaTime));
 
 						// exit command
 						isExit = isExit || Application::m_isExitCommand;
@@ -77,7 +78,7 @@ private:
 	void deltaTime();
 	bool beginFrame();
 	bool endFrame();
-	bool update();
+	bool update(float dt);
 	void close();
 
 	static inline bool m_isExitCommand = false;
@@ -85,5 +86,6 @@ private:
 	Configuration m_config;
 	struct AppPimpl;
 	AppPimpl *m_pimpl = nullptr;
-	
+	Timer m_deltaTimer;
+	float m_deltaTime = 0.0f;
 };

@@ -17,7 +17,7 @@ bool Game::Init()
 	return true;
 }
 //-----------------------------------------------------------------------------
-bool Game::Update()
+bool Game::Update(float dt)
 {
 	return true;
 }
